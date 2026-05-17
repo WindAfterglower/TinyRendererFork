@@ -39,7 +39,7 @@ int main(int argc,char** argv){
 
     framebuffer.write_tga_file("../TGA/framebuffer.tga");
 
-    PreviewTGA("python3  ../TGA/tga_preview.py");
+    PreviewTGA("python  ../TGA/tga_preview.py");
 
     std::cout<<"Writen End!";
     
