@@ -27,6 +27,7 @@ int main(int argc,char** argv){
     int bx = 12,by = 37;
     int cx = 62,cy = 53;
 
+    
 
     line(ax,ay,bx,by,framebuffer,blue);
     line(bx,by,cx,cy,framebuffer,red);

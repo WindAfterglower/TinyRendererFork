@@ -1,8 +1,10 @@
 # Xmake cache
 .xmake/
 .vscode/
+.cache/
 build/
 bin/
+
 
 
 # MacOS Cache
