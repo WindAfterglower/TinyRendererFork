@@ -1,5 +1,7 @@
 #include <cmath>
+#include <cstdlib>
 #include <iostream>
+#include <string>
 #include "tgaimage.h"
 
 constexpr TGAColor white  = {255,255,255,255};
@@ -35,6 +37,8 @@ int main(int argc,char** argv){
     framebuffer.set(cx,cy,blue);
 
     framebuffer.write_tga_file("../TGA/framebuffer.tga");
+    const char* str = "python3  ../TGA/tga_preview.py";
+    std::system(str);
     std::cout<<"Writen End!";
     
     return 0;
