@@ -1,6 +1,4 @@
 add_rules("mode.debug", "mode.release")
-set_toolchains("mingw")
-set_config("mingw", "D:/MingGW")
 
 target("TinyRenderer")
     set_kind("binary")                     -- 生成可执行文件
