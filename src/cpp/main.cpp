@@ -1,6 +1,8 @@
 #include <cmath>
+#include <cstdlib>
 #include <iostream>
 #include <string>
+#include <utility>
 #include "tgaimage.h"
 #include "Util.h"
 
@@ -11,10 +13,26 @@ constexpr TGAColor blue   = {255,128,64,255};
 constexpr TGAColor yellow = {0,200,255,255};
 
 void line(int ax,int ay,int bx,int by,TGAImage &framebuffer,TGAColor color){
-    for(float t = 0;t<1;t+=.02){
-        int x = std::round(ax + (bx-ax)*t);
+    bool steep = std::abs(ax - bx) < std::abs(ay-by);
+    
+    if(steep){
+        std::swap(ax,ay);
+        std::swap(by,bx);
+    }
+    
+    if(ax > bx){
+        std::swap(ax,bx);
+        std::swap(ay,by);
+    }
+
+    for(float x = ax;x<=bx;x++){
+        float t = (x - ax)/static_cast<float>(bx-ax);
         int y = std::round(ay + (by-ay)*t);
-        framebuffer.set(x,y,color);
+        
+        if(steep)
+            framebuffer.set(y,x,color);
+        else
+            framebuffer.set(x,y,color);
     }
 }
 
@@ -31,6 +49,7 @@ int main(int argc,char** argv){
     line(ax,ay,bx,by,framebuffer,blue);
     line(bx,by,cx,cy,framebuffer,red);
     line(ax,ay,cx,cy,framebuffer,green);
+    //line(cx,cy,ax,ay,framebuffer,yellow);
 
     framebuffer.set(ax,ay,red);
     framebuffer.set(bx,by,green);
